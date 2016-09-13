@@ -5,12 +5,12 @@ angular
 function LoginController($location, $scope, UserFactory) {
   $scope.error = UserFactory.error;
 
-  $scope.login = function () {
+  $scope.login = function() {
     UserFactory.updateUser(this.username, this.password);
     $location.path('profile');
   };
 
-  $scope.newUser = function () {
+  $scope.newUser = function() {
     UserFactory.updateUser(this.NewUsername, this.NewPassword);
     $location.path('NewProfile');
   };
