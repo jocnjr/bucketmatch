@@ -33,5 +33,6 @@ function UserFactory($http) {
   userData.createNew = function (data) {
     return $http.post(ADDURL + data); //TODO: Correct the URL for this post request
   }
+
   return userData;
 }

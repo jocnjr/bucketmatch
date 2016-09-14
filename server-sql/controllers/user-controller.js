@@ -23,7 +23,7 @@ function show(req, res, next) { // to get the logged in user's profile'
   })
   .then((user) => {
     if (user === null) {
-      res.status(500).send(null);
+      res.status(200).send(null);
     } else {
       req.user = user;
     }
