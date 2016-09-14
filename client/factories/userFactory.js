@@ -33,6 +33,12 @@ function UserFactory($http) {
     return $http.put('http://localhost:3000/useractivity/addbio', bioData);
   };
 
+  userData.updateBioImage = function(bioImage,user) {
+    bioImageData = {'profilepic': bioImage, 'username':user}
+    console.log(bioImageData)
+    return $http.put('http://localhost:3000/useractivity/addbioimage', bioImageData);
+  };
+
   userData.error = function(data) {
     $scope.error = data;
   };

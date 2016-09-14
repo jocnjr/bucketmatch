@@ -1,8 +1,8 @@
 angular
-  .module('UserProfileController', ['ngRoute', 'EventFactory', 'UserFactory'])
+  .module('UserProfileController', ['ngRoute', 'EventFactory', 'UserFactory','ngFileUpload'])
   .controller('UserProfileController', usercontroller)
 
-function usercontroller($scope, $location, $http, EventFactory, UserFactory) {
+function usercontroller($scope, $location, $http, EventFactory, UserFactory,Upload) {
   $scope.image = undefined;
   $scope.activities = [];
   $scope.completed = [];
@@ -10,6 +10,7 @@ function usercontroller($scope, $location, $http, EventFactory, UserFactory) {
   $scope.userid = '';
   $scope.username = '';
   $scope.bio = '';
+  $scope.bioImage = 'fd';
 
 
   // TODO: Figure out where this.activity is coming from
@@ -27,6 +28,15 @@ function usercontroller($scope, $location, $http, EventFactory, UserFactory) {
 
   $scope.updateBio = function() {
     UserFactory.updateBio($scope.bio,$scope.username);
+  }
+
+  $scope.uploadFiles = function(file) {
+      Upload.base64DataUrl(file).then(function(urls){
+        $scope.bioImage = urls;
+        console.log($scope.bioImage,$scope.username)
+        UserFactory.updateBioImage($scope.bioImage,$scope.username);
+      });
+
   }
 
   function loadPage() {

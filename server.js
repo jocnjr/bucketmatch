@@ -10,6 +10,7 @@ const path = require('path');
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser({limit: '50mb'}));
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -36,6 +37,8 @@ app.post('/useractivity/add', uaCtrl.add, (req, res) => { res.end(); });// to ad
 app.get('/useractivity/findbyact/:actname', uaCtrl.findbyact, (req, res) => { res.end(); });// to find all users by activity
 
 app.put('/useractivity/addbio', userCtrl.addBio, (req, res) => { res.end(); });
+app.put('/useractivity/addbioimage', userCtrl.addBioImage, (req, res) => { res.end(); });
+
 app.use(express.static(path.join(__dirname, '/client/')));
 
 app.listen(3000, () => {
