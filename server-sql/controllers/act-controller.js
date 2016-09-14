@@ -12,11 +12,15 @@ function index(req, res) { // retruns a list of all activities
 
 function add(req, res, next) { // adds a new activity to the database
   console.log('---->', req.body);
-  Activity.create(req.body)
+  const {userId, activityName, activityDescription} = req.body;
+
+  Activity.create({
+    actname: activityName,
+    actdesc: activityDescription
+  })
     .then((resp) => {
       console.log(resp, '+++++ ' + resp.dataValues._id, resp.dataValues.userId);
-      req.actKey = resp.dataValues._id;
-      req.userId = resp.dataValues.userId;
+      req.body.activityId = resp.dataValues._id;
       next();
     })
     .catch((err) => {
