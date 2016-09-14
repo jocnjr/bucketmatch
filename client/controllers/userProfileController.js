@@ -10,6 +10,9 @@ function usercontroller($scope, $location, $http, EventFactory, UserFactory) {
   $scope.userid = '';
   $scope.username = '';
 
+  // TODO: Figure out where this.activity is coming from
+  // Answer: It is coming from the ng-repeat="activity in activities"
+  // in the userprofile.html partial
   $scope.activityView = function () {
     console.log("inside usercontroler", this.activity.actname)
     EventFactory.updateEvent(this.activity.actname);
@@ -21,6 +24,8 @@ function usercontroller($scope, $location, $http, EventFactory, UserFactory) {
   };
 
   function loadPage() {
+    // TODO: Why is this on the userProfile page? This should be handled
+    // on the login page.
     UserFactory.fetch().then((data) => {
       if (data === null) {
         UserFactory.error('Sorry incorrect username or password.  Please try again')
