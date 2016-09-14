@@ -42,5 +42,9 @@ function EventFactory($http, $location) {
     );
   };
 
+  obj.newActivity = function (reqBody) {
+    console.log('---------->', reqBody);
+    return $http.post('http://localhost:3000/activity/add', reqBody);
+  };
   return obj;
 }

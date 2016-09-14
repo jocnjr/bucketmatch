@@ -11,15 +11,17 @@ function index(req, res) { // retruns a list of all activities
 }
 
 function add(req, res, next) { // adds a new activity to the database
-  Activity.create(req.body.data.event)
+  console.log('---->', req.body);
+  Activity.create(req.body)
     .then((resp) => {
-      console.log(resp);
+      console.log(resp, '+++++ ' + resp.dataValues._id, resp.dataValues.userId);
       req.actKey = resp.dataValues._id;
+      req.userId = resp.dataValues.userId;
+      next();
     })
     .catch((err) => {
       if (err) console.error(err);
-    });
-  next();
+    });    
 }
 
 function show(req, res, next) { // finds a single activity

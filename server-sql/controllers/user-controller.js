@@ -87,11 +87,26 @@ function addBio(req, res, next) {
   });
 }
 
+function addBioImage(req, res, next) {
+  console.log(req)
+  User.update(
+  {
+    profilepic: req.body.profilepic
+  },
+  {
+    where: { username : req.body.username }
+  })
+  .then(function () {
+     next();
+  });
+}
+
 module.exports = {
   index,
   add,
   show,
   conn,
   profile,
-  addBio
+  addBio,
+  addBioImage
 };
