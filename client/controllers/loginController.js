@@ -1,3 +1,8 @@
+/**
+ * LoginController
+ * Controller for '/' route, 'login.html' template
+ */
+ 
 angular
   .module('LoginController', ['ngRoute', 'UserFactory'])
   .controller('LoginController', LoginController)

@@ -1,8 +1,17 @@
+/**
+ * UserFactory
+ *
+ * Keeps track of information about the currently logged in user
+ * Provides methods for getting user info from server and posting
+ * to server to create new user
+ *
+ */
+
 angular
   .module('UserFactory', [])
-  .factory('UserFactory', userFactory)
+  .factory('UserFactory', UserFactory)
 
-function userFactory($http) {
+function UserFactory($http) {
   let userData = [];
   let user = '';
   let password = '';
@@ -22,7 +31,7 @@ function userFactory($http) {
   };
 
   userData.createNew = function (data) {
-    return $http.post(ADDURL + data);
+    return $http.post(ADDURL + data); //TODO: Correct the URL for this post request
   }
   return userData;
 }
