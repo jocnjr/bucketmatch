@@ -26,7 +26,7 @@ function usercontroller($scope, $location, $http, EventFactory, UserFactory) {
   };
 
   $scope.updateBio = function() {
-    UserFactory.updateBio($scope.bio);
+    UserFactory.updateBio($scope.bio,$scope.username);
   }
 
   function loadPage() {

@@ -16,6 +16,7 @@ function UserFactory($http) {
   let user = '';
   let password = '';
   let error = '';
+  let bioData = '';
 
   userData.fetch = function() {
     return $http.get('http://localhost:3000/user/' + user + '/' + password);
@@ -26,8 +27,10 @@ function UserFactory($http) {
     password = pass;
   };
 
-  userData.updateBio = function(data) {
-    return $http.put('http://localhost:3000/useractivity/addbio', data);
+  userData.updateBio = function(bio,user) {
+    bioData = {'bio': bio, 'username':user}
+    console.log(bioData)
+    return $http.put('http://localhost:3000/useractivity/addbio', bioData);
   };
 
   userData.error = function(data) {

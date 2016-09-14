@@ -45,17 +45,39 @@ function conn(req, res) {
 }
 
 function profile(req, res, next) {
-  User.findOne({ where: { username: req.params.username } }, err => {
-    if (err) console.error(err);
+  User.findOne({
+      where: {
+        username: req.params.username
+      }
+    }, err => {
+      if (err) console.error(err);
+    })
+    .then((user) => {
+      const userprofile = {
+        "username": user.username,
+        "profilepic": user.profilepic,
+        "bio": user.bio
+      };
+      if (user === null) {
+        res.status(500).send(null);
+      } else {
+        res.json(userprofile);
+      }
+      next();
+    });
+}
+
+function addBio(req, res, next) {
+  console.log(req.body)
+  User.update(
+  {
+    bio: req.body.bio
+  },
+  {
+    where: { username : req.body.username }
   })
-  .then((user) => {
-    const userprofile = { "username": user.username, "profilepic": user.profilepic, "bio": user.bio };
-    if (user === null) {
-      return res.status(500).send(null);
-    } else {
-      return res.json(userprofile);
-    }
-    next();
+  .then(function () {
+     next();
   });
 }
 
