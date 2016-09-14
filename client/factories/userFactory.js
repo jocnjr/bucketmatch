@@ -30,8 +30,12 @@ function UserFactory($http) {
     $scope.error = data;
   };
 
-  userData.createNew = function (data) {
-    return $http.post(ADDURL + data); //TODO: Correct the URL for this post request
+  userData.createNew = function (username, password) {
+    console.log('createNew data -> ' + username,password);
+    let reqBody = {};
+    reqBody.username = username;
+    reqBody.password = password;
+    return $http.post('http://localhost:3000/user/add', reqBody);
   }
   return userData;
 }

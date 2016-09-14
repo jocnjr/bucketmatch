@@ -24,7 +24,7 @@ app.get('/user/:username/:password', userCtrl.show, userCtrl.conn); // to log in
 app.get('/userinfo/:username/', userCtrl.profile, (req, res) => { res.end(); }); // to get a single user's profile with limited info'
 
 app.get('/test', userCtrl.index); // full list of users, not needed for front-end
-app.post('/user/add', userCtrl.add, (req, res) => { res.end(); });// to add a single user
+app.post('/user/add', userCtrl.add, (req, res) => { res.sendStatus(200); });// to add a single user
 
 app.get('/activities', actCtrl.index); // full list of activities, for user to choose from
 app.post('/activity/add', actCtrl.add, uaCtrl.add, (req, res) => { res.end(); });// to add a new activity
