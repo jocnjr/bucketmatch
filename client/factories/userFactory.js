@@ -13,17 +13,27 @@ angular
 
 function UserFactory($http) {
   let userData = [];
-  let user = '';
+  let username = '';
+  let userId = '';
   let password = '';
   let error = '';
   let bioData = '';
 
   userData.fetch = function() {
-    return $http.get('http://localhost:3000/user/' + user + '/' + password);
+    return $http.get('http://localhost:3000/user/' + username + '/' + password);
   };
 
-  userData.updateUser = function(person, pass) {
-    user = person;
+  userData.storeUserId = function(newUserId) {
+    userId = newUserId;
+  };
+
+  userData.getUserId = function() {
+    return userId;
+  };
+
+  userData.updateUser = function(user, pass) {
+    console.log('Current user is now', user, pass)
+    username = user;
     password = pass;
   };
 

@@ -12,7 +12,7 @@ function usercontroller($scope, $location, $http, EventFactory, UserFactory) {
   $scope.bio = '';
 
 
-  // TODO: Figure out where this.activity is coming from
+  // Question: Figure out where this.activity is coming from
   // Answer: It is coming from the ng-repeat="activity in activities"
   // in the userprofile.html partial
   $scope.activityView = function () {
@@ -49,6 +49,8 @@ function usercontroller($scope, $location, $http, EventFactory, UserFactory) {
       $scope.bio = data.data.user.bio;
       $scope.userid = data.data.user._id;
       $scope.username = data.data.user.username;
+
+      UserFactory.storeUserId($scope.userid);
     });
   }
   loadPage();

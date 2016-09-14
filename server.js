@@ -20,22 +20,84 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/index.html'));
 });
 
-app.get('/user/:username/:password', userCtrl.show, userCtrl.conn); // to log in and get current user info
-app.get('/userinfo/:username/', userCtrl.profile, (req, res) => { res.end(); }); // to get a single user's profile with limited info'
+// to log in and get current user info
+app.get('/user/:username/:password',
+  // Get the current user's info and attach to req.user
+  userCtrl.show,
 
-app.get('/test', userCtrl.index); // full list of users, not needed for front-end
-app.post('/user/add', userCtrl.add, (req, res) => { res.sendStatus(200); });// to add a single user
+  // Get all activities associated to the current user, then
+  // send a JSON response of the form {activities, user}
+  userCtrl.conn
+);
+
+
+// to get a single user's profile with limited info'
+app.get('/userinfo/:username/',
+  // Get the current user's info, then send a JSON response
+  // of the form {username, profilepic, bio}
+  userCtrl.profile,
+
+  // End the response
+  (req, res) => { res.end(); }
+);
+
+
+// full list of users, not needed for front-end
+app.get('/test', userCtrl.index);
+
+
+// to add a single user
+app.post('/user/add', userCtrl.add, (req, res) => { res.sendStatus(200); });
+
+
+// full list of activities, for user to choose from
+app.get('/activities', actCtrl.index);
+
+
+// to add a new activity
+app.post('/activity/add',
+  actCtrl.add,
+  uaCtrl.add,
+  (req, res) => { res.end(); }
+);
+
+
+// to view all joins between users & activities
+app.get('/useractivities',
+  uaCtrl.index,
+  (req, res) => { res.end(); }
+);
+
+
+// to add an existing activity TO a User
+app.post('/useractivity/add',
+  uaCtrl.add,
+  (req, res) => { res.end(); }
+);
+
 
 app.get('/activities', actCtrl.index); // full list of activities, for user to choose from
 app.post('/activity/add', actCtrl.add, uaCtrl.add, (req, res) => { res.sendStatus(200); });// to add a new activity
 
-app.get('/useractivities', uaCtrl.index, (req, res) => { res.end(); });// to view all joins between users & activities
-app.post('/useractivity/add', uaCtrl.add, (req, res) => { res.end(); });// to add an existing activity TO a User
+
 // app.put('/useractivity/close', uaCtrl.close, (req, res) => {res.end() }); // to mark activity as done
 
-app.get('/useractivity/findbyact/:actname', uaCtrl.findbyact, (req, res) => { res.end(); });// to find all users by activity
 
-app.put('/useractivity/addbio', userCtrl.addBio, (req, res) => { res.end(); });
+
+// to find all users by activity
+app.get('/useractivity/findbyact/:actname',
+  uaCtrl.findbyact,
+  (req, res) => { res.end(); }
+);
+
+
+app.put('/useractivity/addbio',
+  userCtrl.addBio,
+  (req, res) => { res.end(); }
+);
+
+
+
 app.use(express.static(path.join(__dirname, '/client/')));
 
 app.listen(3000, () => {

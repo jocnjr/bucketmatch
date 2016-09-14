@@ -1,10 +1,12 @@
+<nav-bar></nav-bar>
 <div class="actContainer">
+  <p ng-model='error'>{{error}}</p>
   <!--Enter text to filter activities-->
-    <input type='text' ng-model='filterBy' placeholder='Enter filter word'></input>
+  <input type='text' ng-model='filterBy' placeholder='Enter filter word'></input>
   <!--repeat is list of activity names-->
   <div class="list" ng-repeat="activity in events | filter: filterBy">
     <!--clicking activity adds activity to current user's profile-->
-    <p class="clickable" ng-click="addMeToEvent()"> {{activity.actname}}</p> 
+    <p class="clickable" ng-click="addMeToEvent()"> {{activity.actname}}</p>
   </div>
   <button ng-click="goToNewDream()"> Create New Dream </button>
 </div>
