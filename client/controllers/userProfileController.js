@@ -27,6 +27,12 @@ function usercontroller($scope, $location, $http, EventFactory, UserFactory) {
     // TODO: Why is this on the userProfile page? This should be handled
     // on the login page.
     UserFactory.fetch().then((data) => {
+      // I think this will be unnecessary now that the username
+      // and password are being checked on the login page.
+      // Also, can we figure out a way to make it so that we don't need
+      // to fetch here again? We've already fetched on the login page.
+      // Maybe we can store the entire user info in the UserFactory, and
+      // then just pull it out when we need it.
       if (data === null) {
         UserFactory.error('Sorry incorrect username or password.  Please try again')
         $location.path('/');
