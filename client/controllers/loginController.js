@@ -27,10 +27,17 @@ function LoginController($location, $scope, $http, UserFactory) {
   };
 
   $scope.newUser = function() {
-    UserFactory.createNew(this.NewUsername, this.NewPassword).then((res) => {
-      console.log("received response");
-      UserFactory.updateUser(this.NewUsername, this.NewPassword);
-      $location.path('profile');
-    });
+    UserFactory.createNew(this.NewUsername, this.NewPassword)
+      .then((res) => {
+        // If the username already exists, show an error
+        // message and don't allow the user to proceed
+        if (res.data.error) {
+          $scope.error = res.data.error;
+          return;
+        }
+
+        UserFactory.updateUser(this.NewUsername, this.NewPassword);
+        $location.path('profile');
+      });
   };
 }

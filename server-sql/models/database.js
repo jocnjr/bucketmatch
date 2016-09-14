@@ -17,8 +17,11 @@ const User = sequelize.define('users', {
     primaryKey: true,
     autoIncrement: true
   },
-  username: Sequelize.STRING,
-  profilepic: Sequelize.STRING(1234) ,
+  username: {
+    type: Sequelize.STRING,
+    unique: true
+  },
+  profilepic: Sequelize.STRING,
   bio: Sequelize.STRING,
   password: Sequelize.STRING,
 }, {
