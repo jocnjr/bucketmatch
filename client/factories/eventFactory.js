@@ -1,11 +1,15 @@
+/**
+ * Keeps track of the information for the activity that we are currently viewing
+ */
+
 angular
   .module('EventFactory', [])
-  .factory('EventFactory', eventFactory)
+  .factory('EventFactory', EventFactory)
 
-function eventFactory($http, $location) {
+function EventFactory($http, $location) {
   let obj = {};
   let event = '';
-  let user = '';
+  let user = ''; // Question: Why is there a user here? Where is this being used?
   let matchAct;
 
   obj.updateEvent = function (data) {

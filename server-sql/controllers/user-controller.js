@@ -18,22 +18,17 @@ function add(req, res, next) { // create a new user record
 }
 
 function show(req, res, next) { // to get the logged in user's profile'
-  User.findOne({
-      where: {
-        username: req.params.username,
-        password: req.params.password
-      }
-    }, err => {
-      if (err) console.error(err);
-    })
-    .then((user) => {
-      if (user === null) {
-        res.status(500).send(null);
-      } else {
-        req.user = user;
-      }
-      next();
-    });
+  User.findOne({ where: { username: req.params.username, password: req.params.password } }, err => {
+    if (err) console.error(err);
+  })
+  .then((user) => {
+    if (user === null) {
+      res.status(200).send(null);
+    } else {
+      req.user = user;
+    }
+    next();
+  });
 }
 
 function conn(req, res) {
