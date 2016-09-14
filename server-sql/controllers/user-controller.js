@@ -11,10 +11,13 @@ function index(req, res) {
 }
 
 function add(req, res, next) { // create a new user record
-  User.create(req.body[0], err => {
+  User.create(req.body, err => {
     if (err) console.error(err);
+  })
+  .then((data) => {
+    console.log('inside then - add function', data);
+    next();
   });
-  next();
 }
 
 function show(req, res, next) { // to get the logged in user's profile'
