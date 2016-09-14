@@ -6,11 +6,16 @@
     <img ng-src={{image}} />
      <div class='desc'>
     <p ng-model='description'>Bio: {{description}}</p>
+    <form novalidate>
+  <input ng-model="description">
+  <!-- The method for submitting the data goes on the button. -->
+  <input type="submit" ng-click="updateBio(description)" value="Click to submit">
+</form>
   </div>
   </div>
    <div class='list'>
     <h3>Todo Dreams</h3>
-    <div  ng-click='activityView()' ng-repeat='activity in activities'>
+    <div class='clickable' ng-click='activityView()' ng-repeat='activity in activities'>
       <div class="listItems">
       {{activity.actname}}
       </div>

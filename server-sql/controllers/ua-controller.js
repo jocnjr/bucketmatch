@@ -7,7 +7,7 @@ const Activity = database.Activity;
 
 function index(req, res) { // displays all activities associated with users? for devs not production
   UserActivity.findAll({}).then((uas) => {
-    res.json(uas);
+    return res.json(uas);
   });
 }
 
@@ -30,7 +30,7 @@ function findbyact(req, res, next) { // finds all users by activity
   '"useractivities"."activityId") where "actname" =\'' + req.params.actname + '\'')
   .then((data) => {
     const output = { users: data[0] };
-    res.json(output);
+    return res.json(output);
     next();
   });
 }
