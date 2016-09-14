@@ -6,7 +6,7 @@ const Activity = database.Activity;
 
 function index(req, res) { // retruns a list of all activities
   Activity.findAll({}).then((acts) => {
-    res.json(acts);
+    return res.json(acts);
   });
 }
 
