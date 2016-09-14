@@ -9,7 +9,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 body .navbar .navbar-inner ul.nav>li>a {
-  padding: 7px 10px; 
+  padding: 7px 10px;
 }
 
 body, html {
@@ -38,7 +38,7 @@ h3{
   padding: 30px;
   background-image: url("./Kiwi-Krawl-Day-4-101.jpg");
   background-repeat: no-repeat;
-  background-size:100%;  
+  background-size:100%;
   /*background-position: -10px -50px;*/
   width: 80%;
   margin: 0 auto;
@@ -50,7 +50,7 @@ h3{
   padding:30px;
   width: 400px;
   background-color: rgba(80, 80, 100, 0.5);
-  
+
 }
 
 input, button {
@@ -90,18 +90,16 @@ header {
   min-height: 500px;
 }
 
-<<<<<<< HEAD
 .actContainer a {
   font-size: 1.4em;
   color: black;
   text-decoration: none;
 }
 
-=======
 /*.actContainer{
   background-image: url("http://www.cfau-pd.net/images/adventure-wallpapers/adventure-wallpapers-12.jpg");
   background-repeat: no-repeat;
-  background-size:100%;  
+  background-size:100%;
   /*background-position: -10px -50px;*/
   /*width: 80%;
   margin: 0 auto;
@@ -111,7 +109,7 @@ header {
   background-size: cover;
   height: 20%;
 }
->>>>>>> d548f067ede39113de68f38b035c867810317198
+
 .addDreamButton {
   width: 100px;
   margin: 5px auto;
@@ -136,4 +134,13 @@ header {
   background-image: url("https://storyoflifeandadventures.files.wordpress.com/2012/01/peter-pan-in-belize1.jpg");
   background-size: cover;
 
+}
+
+.clickable {
+  color: blue;
+  cursor: pointer;
+}
+
+.clickable:hover {
+  text-decoration: underline;
 }
