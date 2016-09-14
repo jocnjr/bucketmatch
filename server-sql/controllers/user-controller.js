@@ -45,7 +45,6 @@ function conn(req, res) {
 }
 
 function profile(req, res, next) {
-<<<<<<< HEAD
   User.findOne({ where: { username: req.params.username } }, err => {
     if (err) console.error(err);
   })
@@ -54,37 +53,10 @@ function profile(req, res, next) {
     if (user === null) {
       return res.status(500).send(null);
     } else {
-      res.json(userprofile);
+      return res.json(userprofile);
     }
     next();
   });
-=======
-  User.findOne({
-      where: {
-        username: req.params.username
-      }
-    }, err => {
-      if (err) console.error(err);
-    })
-    .then((user) => {
-      const userprofile = {
-        "username": user.username,
-        "profilepic": user.profilepic,
-        "bio": user.bio
-      };
-      if (user === null) {
-        res.status(500).send(null);
-      } else {
-        res.json(userprofile);
-      }
-      next();
-    });
-}
-
-function addBio(req, res, next) {
-  console.log('you are in addBio')
-  next();
->>>>>>> master
 }
 
 module.exports = {
