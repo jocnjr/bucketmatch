@@ -46,7 +46,7 @@ function usercontroller($scope, $location, $http, EventFactory, UserFactory) {
       $scope.image = data.data.user.profilepic;
       $scope.activities = data.data.activities;
       $scope.completed = '';
-      $scope.description = data.data.user.bio;
+      $scope.bio = data.data.user.bio;
       $scope.userid = data.data.user._id;
       $scope.username = data.data.user.username;
     });
