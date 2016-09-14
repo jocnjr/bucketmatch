@@ -5,12 +5,13 @@
   <div class="profilepic" >
     <img ng-src={{image}} />
      <div class='desc'>
-    <p ng-model='description'>Bio: {{description}}</p>
-    <form novalidate>
-  <input ng-model="description">
-  <!-- The method for submitting the data goes on the button. -->
-  <input type="submit" ng-click="updateBio(description)" value="Click to submit">
-</form>
+    <p>Bio: {{bio}}</p>
+    <h4 ng-click="showDetails = ! showDetails">Update bio</h4>
+    <form novalidate ng-show="showDetails">
+      <input ng-model="bio">
+      <!-- The method for submitting the data goes on the button. -->
+      <input type="submit" ng-click="updateBio(bio); showDetails = ! showDetails" value="Click to submit">
+    </form>
   </div>
   </div>
    <div class='list'>
