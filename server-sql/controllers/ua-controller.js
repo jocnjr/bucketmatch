@@ -12,9 +12,10 @@ function index(req, res) { // displays all activities associated with users? for
 }
 
 function add(req, res, next) { // associates a user and a activity
+  console.log('----> ' + req.actKey + req.userId + ' <--- inside useractivity add function');
   if (req.actKey) {
-    const updateObj = { "activityid": req.actKey, "userid": req.body.data[0].userid }
-    UserActivity.create(req.body.data[0], err => {
+    const updateObj = { "activityid": req.actKey, "userid": req.userId }
+    UserActivity.create(updateObj, err => {
       if (err) console.error(err);
     });
   }

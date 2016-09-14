@@ -34,5 +34,11 @@ function EventFactory($http, $location) {
     const dataArr = [data];
     return $http.post('http://localhost:3000/useractivity/add', JSON.stringify({ data: dataArr }));
   };
+
+  obj.newActivity = function (reqBody) {
+    console.log('---------->', reqBody);
+    return $http.post('http://localhost:3000/activity/add', reqBody);
+  };
+
   return obj;
 }
