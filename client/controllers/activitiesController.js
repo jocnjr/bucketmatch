@@ -4,6 +4,7 @@ angular
 
 function activitiescontroller($scope, $location, EventFactory, UserFactory) {
   $scope.events = [];
+  $scope.error = '';
 
   function loadActivities() {
     EventFactory.fetchActivities().then(response => {
@@ -17,7 +18,11 @@ function activitiescontroller($scope, $location, EventFactory, UserFactory) {
   };
 
   $scope.addMeToEvent = function () {
-    EventFactory.addUserToEvent(UserFactory.getUserId(), this.activity._id);
+    EventFactory.addUserToEvent(UserFactory.getUserId(), this.activity._id)
+      .then(response => {
+        console.log(response);
+        if (response.data.error) $scope.error = response.data.error;
+      });
   };
 
   loadActivities();
