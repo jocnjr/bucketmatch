@@ -18,7 +18,7 @@ const User = sequelize.define('users', {
     autoIncrement: true
   },
   username: Sequelize.STRING,
-  profilepic: Sequelize.STRING(1234) ,
+  profilepic: Sequelize.TEXT,
   bio: Sequelize.STRING,
   password: Sequelize.STRING,
 }, {
