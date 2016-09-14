@@ -14,6 +14,6 @@ function MatchController($location, $scope, EventFactory, ClickedFactory) {
 
   $scope.GetClickedUser = function () {
     ClickedFactory.setUser(this.user.username);
+    $location.path('contact');
   };
 }
-

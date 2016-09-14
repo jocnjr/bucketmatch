@@ -23,6 +23,10 @@ function UserFactory($http) {
     return $http.get('http://localhost:3000/user/' + username + '/' + password);
   };
 
+  userData.getMyMatches = function() {
+    return $http.get('http://localhost:3000/mymatches/' + userId);
+  }
+
   userData.storeUserId = function(newUserId) {
     userId = newUserId;
   };

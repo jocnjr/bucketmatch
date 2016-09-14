@@ -1,0 +1,11 @@
+<!-- This view shows all of the other users who are matches
+to *any* of the activites that are currently associated with the
+currently logged-in user -->
+<nav-bar></nav-bar>
+<div class="actContainer">
+  <h1>Your matches</h1>
+  <div class="clickable" ng-click='showUserProfile()' ng-repeat="match in matches">
+    <!-- Clicking on an individual routes to their profile -->
+    {{match.username}}
+  </div>
+</div>
