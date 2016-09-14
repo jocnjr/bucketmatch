@@ -68,7 +68,6 @@ function profile(req, res, next) {
 }
 
 function addBio(req, res, next) {
-  console.log(req.body)
   User.update(
   {
     bio: req.body.bio
