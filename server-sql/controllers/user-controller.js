@@ -6,7 +6,7 @@ const User = database.User;
 
 function index(req, res) {
   User.findAll({}).then((users) => {
-    res.json(users);
+    return res.json(users);
   });
 }
 
@@ -23,7 +23,7 @@ function show(req, res, next) { // to get the logged in user's profile'
   })
   .then((user) => {
     if (user === null) {
-      res.status(200).send(null);
+      return res.status(200).send(null);
     } else {
       req.user = user;
     }
@@ -37,7 +37,7 @@ function conn(req, res) {
     '("users"."_id" = "useractivities"."userId") where "username" =\'' + req.params.username + '\'')
     .then((data) => {
       const output = { activities: data[0], user: req.user };
-      res.json(output);
+      return res.json(output);
     });
 }
 
@@ -48,7 +48,7 @@ function profile(req, res, next) {
   .then((user) => {
     const userprofile = { "username": user.username, "profilepic": user.profilepic, "bio": user.bio };
     if (user === null) {
-      res.status(500).send(null);
+      return res.status(500).send(null);
     } else {
       res.json(userprofile);
     }
