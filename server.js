@@ -35,6 +35,7 @@ app.post('/useractivity/add', uaCtrl.add, (req, res) => { res.end(); });// to ad
 
 app.get('/useractivity/findbyact/:actname', uaCtrl.findbyact, (req, res) => { res.end(); });// to find all users by activity
 
+app.put('/useractivity/addbio', userCtrl.addBio, (req, res) => { res.end(); });
 app.use(express.static(path.join(__dirname, '/client/')));
 
 app.listen(3000, () => {
