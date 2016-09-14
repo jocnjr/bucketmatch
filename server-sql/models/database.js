@@ -21,7 +21,7 @@ const User = sequelize.define('users', {
     type: Sequelize.STRING,
     unique: true
   },
-  profilepic: Sequelize.STRING,
+  profilepic: Sequelize.TEXT,
   bio: Sequelize.STRING,
   password: Sequelize.STRING,
 }, {
