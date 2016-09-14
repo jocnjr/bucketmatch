@@ -6,6 +6,11 @@
     <img ng-src={{image}} />
      <div class='desc'>
     <p ng-model='description'>Bio: {{description}}</p>
+    <form novalidate>
+  <input ng-model="description">
+  <!-- The method for submitting the data goes on the button. -->
+  <input type="submit" ng-click="updateBio(description)" value="Click to submit">
+</form>
   </div>
   </div>
    <div class='list'>

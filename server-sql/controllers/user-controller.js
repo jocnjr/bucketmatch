@@ -33,27 +33,50 @@ function show(req, res, next) { // to get the logged in user's profile'
 
 function conn(req, res) {
   User.sequelize.query('SELECT "actname" from "activities" join "useractivities" on ' +
-    '("useractivities"."activityId" = "activities"."_id") join "users" on ' +
-    '("users"."_id" = "useractivities"."userId") where "username" =\'' + req.params.username + '\'')
+      '("useractivities"."activityId" = "activities"."_id") join "users" on ' +
+      '("users"."_id" = "useractivities"."userId") where "username" =\'' + req.params.username + '\'')
     .then((data) => {
-      const output = { activities: data[0], user: req.user };
+      const output = {
+        activities: data[0],
+        user: req.user
+      };
       res.json(output);
     });
 }
 
 function profile(req, res, next) {
-  User.findOne({ where: { username: req.params.username } }, err => {
-    if (err) console.error(err);
-  })
-  .then((user) => {
-    const userprofile = { "username": user.username, "profilepic": user.profilepic, "bio": user.bio };
-    if (user === null) {
-      res.status(500).send(null);
-    } else {
-      res.json(userprofile);
-    }
-    next();
-  });
+  User.findOne({
+      where: {
+        username: req.params.username
+      }
+    }, err => {
+      if (err) console.error(err);
+    })
+    .then((user) => {
+      const userprofile = {
+        "username": user.username,
+        "profilepic": user.profilepic,
+        "bio": user.bio
+      };
+      if (user === null) {
+        res.status(500).send(null);
+      } else {
+        res.json(userprofile);
+      }
+      next();
+    });
 }
 
-module.exports = { index, add, show, conn, profile };
+function addBio(req, res, next) {
+  console.log('you are in addBio')
+  next();
+}
+
+module.exports = {
+  index,
+  add,
+  show,
+  conn,
+  profile,
+  addBio
+};
