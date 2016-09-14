@@ -11,13 +11,17 @@ function index(req, res) {
 }
 
 function add(req, res, next) { // create a new user record
-  User.create(req.body, err => {
-    if (err) console.error(err);
-  })
-  .then((data) => {
-    console.log('inside then - add function', data);
-    next();
-  });
+  User.create(req.body)
+    .then((data) => {
+      console.log('inside then - add function', data);
+      next();
+    })
+    .catch(err => {
+      console.error(err);
+      return res.json({
+        error: "User with that username already exists"
+      });
+    });
 }
 
 function show(req, res, next) { // to get the logged in user's profile'
