@@ -10,6 +10,7 @@ const path = require('path');
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser({limit: '50mb'}));
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -78,7 +79,8 @@ app.post('/useractivity/add',
 
 // app.put('/useractivity/close', uaCtrl.close, (req, res) => {res.end() }); // to mark activity as done
 
-
+//stores new bio image to database
+app.put('/useractivity/addbioimage', userCtrl.addBioImage, (req, res) => { res.end(); });
 
 // to find all users by activity
 app.get('/useractivity/findbyact/:actname',
@@ -86,13 +88,10 @@ app.get('/useractivity/findbyact/:actname',
   (req, res) => { res.end(); }
 );
 
-
 app.put('/useractivity/addbio',
   userCtrl.addBio,
   (req, res) => { res.end(); }
 );
-
-
 
 app.use(express.static(path.join(__dirname, '/client/')));
 

@@ -19,6 +19,7 @@
   "homepage": "https://github.com/sneakykate/bucketmatch#readme",
   "dependencies": {
     "angular": "^1.5.8",
+    "angular-base64-upload": "^0.1.19",
     "angular-route": "^1.5.8",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
