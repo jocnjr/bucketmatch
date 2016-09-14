@@ -4,10 +4,11 @@ angular
 
 function activitiescontroller($scope, $location, EventFactory, UserFactory) {
   $scope.events = [];
+  $scope.error = '';
 
   function loadActivities() {
-    EventFactory.fetchActivities().then((data) => {
-      $scope.events = data.data;
+    EventFactory.fetchActivities().then(response => {
+      $scope.events = response.data;
     });
   }
 
@@ -17,7 +18,12 @@ function activitiescontroller($scope, $location, EventFactory, UserFactory) {
   };
 
   $scope.addMeToEvent = function () {
-    EventFactory.addUserToEvent({ "activityId": this.activity._id });
+    EventFactory.addUserToEvent(UserFactory.getUserId(), this.activity._id)
+      .then(response => {
+        console.log(response);
+        if (response.data.error) $scope.error = response.data.error;
+      });
   };
+
   loadActivities();
 }

@@ -28,6 +28,7 @@ function LoginController($location, $scope, $http, UserFactory) {
 
   $scope.newUser = function() {
     UserFactory.createNew(this.NewUsername, this.NewPassword).then((res) => {
+      console.log("received response");
       UserFactory.updateUser(this.NewUsername, this.NewPassword);
       $location.path('profile');
     });

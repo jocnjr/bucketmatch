@@ -12,16 +12,18 @@ function index(req, res) { // displays all activities associated with users? for
 }
 
 function add(req, res, next) { // associates a user and a activity
-  if (req.actKey) {
-    const updateObj = { "activityid": req.actKey, "userid": req.body.data[0].userid }
-    UserActivity.create(req.body.data[0], err => {
-      if (err) console.error(err);
+  const {activityId, userId} = req.body;
+
+  UserActivity.create({activityId, userId})
+    .then(useractivity => {
+      next();
+    })
+    .catch(err => {
+      console.error(err);
+      return res.status(200).json({
+        error: 'You already have that activity on your bucketlist'
+      });
     });
-  }
-  UserActivity.create(req.body.data[0], err => {
-    if (err) console.error(err);
-  });
-  next();
 }
 
 function findbyact(req, res, next) { // finds all users by activity
