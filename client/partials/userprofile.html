@@ -6,7 +6,7 @@
     <img ng-src={{image}} />
      <div class='desc'>
     <p>Bio: {{bio}}</p>
-    <h4 ng-click="showDetails = ! showDetails">Update bio</h4>
+    <h4 class="clickable" ng-click="showDetails = ! showDetails">Update bio</h4>
     <form novalidate ng-show="showDetails">
       <input ng-model="bio">
       <!-- The method for submitting the data goes on the button. -->
