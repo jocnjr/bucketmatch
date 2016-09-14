@@ -3,7 +3,7 @@ of the other users who are matched to the same activity-->
 <div class="actContainer">
   <a ng-href='/#/profile'>Back to your Profile</a>
   <h1> Here are your matches </h1>
-  <div class="list" ng-click='GetClickedUser()' ng-repeat="user in users" >
+  <div class="list clickable" ng-click='GetClickedUser()' ng-repeat="user in users" >
     <!--clicking person routes to user's profile-->
     {{user.username}}
   </div>
