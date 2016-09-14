@@ -19,11 +19,10 @@ function activitiescontroller($scope, $location, EventFactory, UserFactory) {
 
   $scope.createNewActivity = function (actname, actdesc) {
     console.log('createNewActivity', this.actname, this.actdesc);
-    let reqBody = {};
-    reqBody.actname = this.actname;
-    reqBody.actdesc = this.actdesc;
-    EventFactory.newActivity(reqBody);
-    // $location.path('profile')
+    EventFactory.newActivity(UserFactory.getUserId(), this.actname, this.actdesc).then((res) => {
+      $location.path('profile');
+    });
+
   };
 
   $scope.addMeToEvent = function () {
