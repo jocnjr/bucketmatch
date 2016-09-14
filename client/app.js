@@ -1,7 +1,7 @@
 const App = angular
   .module('myApp', ['ngRoute', 'UserProfileController', 'notFoundActController',
     'ActivitiesController', 'LoginController', 'MatchController', 'ContactController',
-    'EventFactory', 'UserFactory', 'ClickedFactory']
+    'EventFactory', 'UserFactory', 'ClickedFactory','NavBar']
 );
 
 App.config(configFunction);

@@ -144,3 +144,31 @@ header {
 .clickable:hover {
   text-decoration: underline;
 }
+
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.nav-list li {
+    float: left;
+}
+
+.nav-list li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 12px 14px;
+    text-decoration: none;
+}
+
+.nav-list li a:hover:not(.active) {
+    background-color: #110;
+}
+
+.nav-list .active {
+background-color:#4CAE50;
+}
