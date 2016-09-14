@@ -6,8 +6,8 @@ function activitiescontroller($scope, $location, EventFactory, UserFactory) {
   $scope.events = [];
 
   function loadActivities() {
-    EventFactory.fetchActivities().then((data) => {
-      $scope.events = data.data;
+    EventFactory.fetchActivities().then(response => {
+      $scope.events = response.data;
     });
   }
 
@@ -17,7 +17,8 @@ function activitiescontroller($scope, $location, EventFactory, UserFactory) {
   };
 
   $scope.addMeToEvent = function () {
-    EventFactory.addUserToEvent({ "activityId": this.activity._id });
+    EventFactory.addUserToEvent(UserFactory.getUserId(), this.activity._id);
   };
+
   loadActivities();
 }

@@ -9,7 +9,10 @@ angular
 function EventFactory($http, $location) {
   let obj = {};
   let event = '';
-  let user = ''; // Question: Why is there a user here? Where is this being used?
+  // Question: Why is there a user here? Where is this being used?
+  // Answer: This user is really the user's ID from the sql database.
+  // Shouldn't this information be held in the UserFactory?
+  let user = '';
   let matchAct;
 
   obj.updateEvent = function (data) {
@@ -29,10 +32,15 @@ function EventFactory($http, $location) {
     return $http.get('http://localhost:3000/activities');
   };
 
-  obj.addUserToEvent = function (data) {
-    data.userId = user;
-    const dataArr = [data];
-    return $http.post('http://localhost:3000/useractivity/add', JSON.stringify({ data: dataArr }));
+  obj.addUserToEvent = function (userId, activityId) {
+    return $http.post(
+      'http://localhost:3000/useractivity/add',
+      JSON.stringify({
+        userId: userId,
+        activityId: activityId
+      })
+    );
   };
+
   return obj;
 }
