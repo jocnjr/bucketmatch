@@ -2,9 +2,11 @@
 
 const Sequelize = require('sequelize');
 
+const {databaseName, userName, password} = require('./database-credentials');
+
 // if there is a password, make it the third parameter after the username,
 // otherwise, make it null and include a comma after it
-const sequelize = new Sequelize('wqzkkdhr', 'wqzkkdhr', 'T8QkIzIi_A0S77YQhZLc85bEXO-uXAp_', {
+const sequelize = new Sequelize(databaseName, userName, password, {
   host: 'elmer-01.db.elephantsql.com',
   dialect: 'postgres',
 });
