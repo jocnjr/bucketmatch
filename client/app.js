@@ -1,7 +1,11 @@
 const App = angular
-  .module('myApp', ['ngRoute', 'UserProfileController', 'notFoundActController',
-    'ActivitiesController', 'LoginController', 'MatchController', 'ContactController',
-    'EventFactory', 'UserFactory', 'ClickedFactory','CustomDirectives','ngFileUpload']
+  .module('myApp', [
+    'ngRoute', 'UserProfileController', 'notFoundActController',
+    'ActivitiesController', 'LoginController', 'MatchController',
+    'ContactController', 'MyMatchesController', 'EventFactory',
+    'UserFactory', 'ClickedFactory','CustomDirectives',
+    'ngFileUpload'
+  ]
 );
 
 App.config(configFunction);
@@ -31,5 +35,9 @@ function configFunction($routeProvider, $locationProvider) {
     .when('/createnew', {
       templateUrl: './partials/createactivity.html',
       controller: 'ActivitiesController',
+    })
+    .when('/mymatches', {
+      templateUrl: './partials/mymatches.html',
+      controller: 'MyMatchesController'
     });
 }
