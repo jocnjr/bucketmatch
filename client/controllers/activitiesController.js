@@ -12,9 +12,17 @@ function activitiescontroller($scope, $location, EventFactory, UserFactory) {
     });
   }
 
-  $scope.addNewDream = function () {
-    console.log('addnewdream');
+  $scope.goToNewDream = function () {
+    console.log('goToNewDream');
     $location.path('createnew')
+  };
+
+  $scope.createNewActivity = function (actname, actdesc) {
+    console.log('createNewActivity', this.actname, this.actdesc);
+    EventFactory.newActivity(UserFactory.getUserId(), this.actname, this.actdesc).then((res) => {
+      $location.path('profile');
+    });
+
   };
 
   $scope.addMeToEvent = function () {

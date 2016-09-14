@@ -42,5 +42,12 @@ function EventFactory($http, $location) {
     );
   };
 
+  obj.newActivity = function (userId, activityName, activityDescription) {
+    return $http.post('http://localhost:3000/activity/add', {
+      userId: userId,
+      activityName: activityName,
+      activityDescription: activityDescription
+    });
+  };
   return obj;
 }

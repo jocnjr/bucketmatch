@@ -13,7 +13,7 @@ function index(req, res) { // displays all activities associated with users? for
 
 function add(req, res, next) { // associates a user and a activity
   const {activityId, userId} = req.body;
-
+  console.log('inside add func ua ',req.body);
   UserActivity.create({activityId, userId})
     .then(useractivity => {
       next();

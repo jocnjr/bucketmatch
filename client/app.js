@@ -30,6 +30,6 @@ function configFunction($routeProvider, $locationProvider) {
     })
     .when('/createnew', {
       templateUrl: './partials/createactivity.html',
-      controller: 'notFoundActController',
+      controller: 'ActivitiesController',
     });
 }

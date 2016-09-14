@@ -1,7 +1,6 @@
-<nav-bar></nav-bar>
-<h1> Create New </h1>
-<form ng-submit='filterText'>
-	<input type='text' ng-model='activityname' placeholder="New Bucket Item"></input>
-  <input type='text' ng-model='activitydesc' placeholder="Description"></input>
-	<input type='submit'></input>
+<h1> Create New Dream  </h1>
+<form ng-submit='createNewActivity()'>
+	<input type='text' ng-model='actname' placeholder="New Dream Item"></input>
+  <input type='text' ng-model='actdesc' placeholder="Description"></input>
+	<button type='submit'>Create!</button>
 </form>
