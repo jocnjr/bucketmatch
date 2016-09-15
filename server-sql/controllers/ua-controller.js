@@ -26,14 +26,14 @@ function add(req, res, next) { // associates a user and a activity
     });
 }
 
-function findbyact(req, res, next) { // finds all users by activity
-  Activity.sequelize.query('SELECT "username" from "users" join "useractivities" on ' +
-  '("useractivities"."userId" = "users"."_id") join "activities" on ("activities"."_id" = ' +
-  '"useractivities"."activityId") where "actname" =\'' + req.params.actname + '\'')
-  .then((data) => {
-    const output = { users: data[0] };
-    return res.json(output);
-    next();
+function findByAct(req, res, next) { // finds all users by activity
+  Activity.sequelize.query('SELECT "activityId" FROM "useractivities" WHERE "userId" =\'' + req.params.userId + '\'')
+  .then((queryData) => {
+    UserActivity.sequelize.query('SELECT DISTINCT useractivities."userId" FROM useractivities WHERE useractivities."activityId" IN (5,6,8)')
+
+  })
+  .then((queryData) => {
+    UserActivity.sequelize.query('SELECT username FROM users WHERE _ID IN (2,3,4)')
   });
 }
 

@@ -86,14 +86,15 @@ app.post('/activity/add', actCtrl.add, uaCtrl.add, (req, res) => { res.sendStatu
 //stores new bio image to database
 app.put('/useractivity/addbioimage', userCtrl.addBioImage, (req, res) => { res.end(); });
 
-// to find all users by activity
-app.get('/useractivity/findbyact/:actname',
-  uaCtrl.findbyact,
-  (req, res) => { res.end(); }
-);
 
 app.put('/useractivity/addbio',
   userCtrl.addBio,
+  (req, res) => { res.end(); }
+);
+
+// to find all users that have activity matches with the current user
+app.get('/mymatches/:userid',
+  uaCtrl.findByAct,
   (req, res) => { res.end(); }
 );
 
