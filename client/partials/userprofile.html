@@ -4,10 +4,16 @@
     <h1>{{username | uppercase }}'s Bucket List</h1>
   </header>
   <div class="profilepic" >
-    <img ng-src={{bioImage}} />
-    <button type="file" ngf-select="uploadFiles($file, $invalidFiles)"
-            accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-        Select File</button>
+    <div class="biopic">
+    <div class="image"><img class="img-thumbnail" ng-src={{bioImage}} /></div>
+        <div class="overlay">
+          <button class="bt1" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+                    accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+                Select File</button>
+              </div>
+            </div>
+          </div>
+
      <div class='desc'>
     <p>Bio: {{bio}}</p>
     <h4 class="clickable" ng-click="showDetails = ! showDetails">Update bio</h4>
@@ -19,7 +25,7 @@
   </div>
   </div>
    <div class='list'>
-    <h3>Todo Dreams</h3>
+    <h3>My Bucket List Activities</h3>
     <div class='clickable' ng-click='activityView()' ng-repeat='activity in activities'>
       <div class="listItems">
       {{activity.actname}}

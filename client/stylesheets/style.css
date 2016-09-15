@@ -83,15 +83,41 @@ header {
 }
 
 .usercontainer, .actContainer {
-  width: 72%;
-  margin: 60px auto;
-  padding: 20px;
-  padding-left: 60px;
-  padding-right: 60px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
   background-color: rgba(250, 250, 250, 0.9);
   min-height: 500px;
   height: 600px;
 }
+
+.overlay{
+ width:100%;
+ height:100%;
+display:none;
+    position:absolute;
+    top:0px;
+    left:0px;
+}
+.overlay div {
+    position:relative;
+    display:inline-block;
+    top:50%;
+    margin:-50% 5px 0 0;
+}
+.profilepic { list-style: none; width: 100%; }
+.profilepic .biopic { position:relative;display:inline-block; width:150px;height:150px;}
+.biopic:hover .overlay {
+    display:block;
+    background-color:black;
+    opacity:0.75;
+}
+.bt1 {
+    background-color:orange;
+    width:50px;
+    height:50px;
+}
+
 
 .actContainer a {
   font-size: 1.4em;
