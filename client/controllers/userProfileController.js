@@ -10,14 +10,13 @@ function usercontroller($scope, $location, $http, EventFactory, UserFactory,Uplo
   $scope.userid = '';
   $scope.username = '';
   $scope.bio = '';
-  $scope.bioImage = 'fd';
+  $scope.bioImage = '';
 
 
   // Question: Figure out where this.activity is coming from
   // Answer: It is coming from the ng-repeat="activity in activities"
   // in the userprofile.html partial
   $scope.activityView = function () {
-    console.log("inside usercontroler", this.activity.actname)
     EventFactory.updateEvent(this.activity.actname);
   };
 
@@ -27,13 +26,12 @@ function usercontroller($scope, $location, $http, EventFactory, UserFactory,Uplo
   };
 
   $scope.updateBio = function() {
-    UserFactory.updateBio($scope.bio,$scope.username);
+    UserFactory.updateBio($scope.bio,$scope.username,$scope.bioImage);
   }
 
   $scope.uploadFiles = function(file) {
       Upload.base64DataUrl(file).then(function(urls){
         $scope.bioImage = urls;
-        console.log($scope.bioImage,$scope.username)
         UserFactory.updateBioImage($scope.bioImage,$scope.username);
       });
 
@@ -53,7 +51,7 @@ function usercontroller($scope, $location, $http, EventFactory, UserFactory,Uplo
         UserFactory.error('Sorry incorrect username or password.  Please try again')
         $location.path('/');
       }
-      $scope.image = data.data.user.profilepic;
+      $scope.bioImage = data.data.user.profilepic;
       $scope.activities = data.data.activities;
       $scope.completed = '';
       $scope.bio = data.data.user.bio;

@@ -88,7 +88,6 @@ function addBio(req, res, next) {
 }
 
 function addBioImage(req, res, next) {
-  console.log(req)
   User.update(
   {
     profilepic: req.body.profilepic
