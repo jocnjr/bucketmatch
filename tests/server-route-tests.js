@@ -8,11 +8,15 @@ require('../server.js');
 describe('Server route', function() {
   describe('GET /', function() {
     it('should respond with html', function(done) {
-
+      request(HOST)
+        .get('/')
+        .expect('Content-Type', /html/,done)
     });
 
     it('should respond with a 200 status', function(done) {
-
+      request(HOST)
+        .get('/')
+        .expect(200, done);
     });
   });
 
