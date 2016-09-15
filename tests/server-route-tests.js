@@ -45,11 +45,22 @@ describe('Server route', function() {
 
   describe('GET /userinfo/:username', function() {
     it('should respond with status 500 and no data if the username does not match a database record', function(done) {
-
+      request(HOST)
+        .get('/userinfo/unexistentuser')
+        .expect(500, done);        
     });
 
     it('should respond with a JSON object with properties "username", "profilepic", and "bio" if the username matches a database record', function(done) {
-
+      request(HOST)
+        .get('/userinfo/joe')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(function(res) {
+          expect(res.body).to.have.property('username');
+          expect(res.body).to.have.property('profilepic');
+          expect(res.body).to.have.property('bio');                    
+        })
+        .expect(200, done);   
     });
   });
 });
