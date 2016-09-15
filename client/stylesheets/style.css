@@ -19,6 +19,7 @@ body, html {
 h1 {
   font-size:2em;
   font-weight: 600;
+  margin-bottom: 30px;
 }
 h2{
   font-size: 1.8em;
@@ -73,13 +74,14 @@ header {
 .list{
   margin: 0 auto;
   padding:4px;
-  width: 300px;
+  width: 600px;
 }
 .desc {
   display: block;
   margin: 10 auto;
   text-align: left;
   float: left;
+  border: solid 1px #333;
 }
 
 .usercontainer, .actContainer {
@@ -106,16 +108,39 @@ display:none;
     margin:-50% 5px 0 0;
 }
 .profilepic { list-style: none; width: 100%; }
-.profilepic .biopic { position:relative;display:inline-block; width:150px;height:150px;}
+.profilepic .biopic { position:relative;display:inline-block;}
 .biopic:hover .overlay {
     display:block;
     background-color:black;
     opacity:0.75;
 }
 .bt1 {
-    background-color:orange;
-    width:50px;
+    width:135px;
     height:50px;
+}
+
+.list-group > li {
+  margin-bottom: -1px;
+}
+
+li > .list-group-item:last-child {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+li > .list-group-item:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+li:last-child > .list-group-item {
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+li:first-child > .list-group-item {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
 
 
