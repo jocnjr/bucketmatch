@@ -1,4 +1,5 @@
 const request = require('supertest');
+const expect = require('chai').expect;
 
 const PORT = process.env.PORT || 3000;
 const HOST = `http://localhost:${PORT}`
@@ -18,11 +19,23 @@ describe('Server route', function() {
 
   describe('GET /user/:username/:password', function() {
     it('should respond with nothing when username and password are not found in the database', function(done) {
-
+      request(HOST)
+        .get('/user/thisshouldnot/beauser')
+        .expect(response => {
+          expect(response.text).to.equal('');
+        })
+        .expect(200, done);
     });
 
     it('should respond with JSON object with properties "activities" and "user" if username and password are found in the database', function(done) {
-
+      request(HOST)
+        .get('/user/hithere/hithere')
+        .expect('Content-Type', 'application/json; charset=utf-8')
+        .expect(response => {
+          expect(response.body).to.have.property('activities');
+          expect(response.body).to.have.property('user');
+        })
+        .expect(200, done);
     });
   });
 
