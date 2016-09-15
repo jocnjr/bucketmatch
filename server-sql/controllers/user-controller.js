@@ -60,16 +60,14 @@ function profile(req, res, next) {
       if (err) console.error(err);
     })
     .then((user) => {
+      if (user === null) return res.status(500).send(null);
+
       const userprofile = {
         "username": user.username,
         "profilepic": user.profilepic,
         "bio": user.bio
       };
-      if (user === null) {
-        res.status(500).send(null);
-      } else {
-        res.json(userprofile);
-      }
+      res.json(userprofile);
       next();
     });
 }
