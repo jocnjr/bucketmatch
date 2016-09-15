@@ -13,7 +13,6 @@ function index(req, res) { // displays all activities associated with users? for
 
 function add(req, res, next) { // associates a user and a activity
   const {activityId, userId} = req.body;
-  console.log('inside add func ua ',req.body);
   UserActivity.create({activityId, userId})
     .then(useractivity => {
       next();
@@ -26,21 +25,34 @@ function add(req, res, next) { // associates a user and a activity
     });
 }
 
-function findByAct(req, res, next) { // finds all users by activity
 
+// myMatch query nightmare
+function findByAct(req, res, next) { // finds all users by activity
   Activity.sequelize.query('SELECT "activityId" FROM "useractivities" WHERE "userId" =' + req.params.userid)
   .then((queryData) => {
-    let queryString = []
-    for (let i = 0; i < queryData[0].length; i++) {
-      queryString.push(queryData[0][i].activityId)
-    }
-    queryString = queryString.join(",")
-    UserActivity.sequelize.query('SELECT DISTINCT useractivities."userId" FROM useractivities WHERE useractivities."activityId" IN ('+queryString+')')
+    return UserActivity.sequelize.query('SELECT DISTINCT useractivities."userId" FROM useractivities WHERE useractivities."activityId" IN (' + queryDataParser(queryData, "activityId") + ')')
   })
   .then((queryData) => {
-    console.log(queryData)
-    UserActivity.sequelize.query('SELECT username FROM users WHERE _ID IN (2,3,4)')
+    return UserActivity.sequelize.query('SELECT username FROM users WHERE _ID IN (' + queryDataParser(queryData, "userId") + ')')
+  })
+  .then((queryData) => {
+    let myMatches = [];
+    for (let i = 0; i < queryData[0].length; i++ ) {
+      myMatches.push({username:queryData[0][i]});
+    }
+    return res.send(JSON.stringify(myMatches));
+  }).catch((err) => {
+    res.sendStatus(500);
   });
+}
+
+// helper function to parse the sequilize obj return
+function queryDataParser(queryData, querySelector) {
+  let queryString = []
+  for (let i = 0; i < queryData[0].length; i++) {
+    queryString.push(queryData[0][i][querySelector])
+  }
+  return queryString.join(",");
 }
 
 module.exports = { index, add, findByAct };
