@@ -94,9 +94,7 @@ app.put('/useractivity/addbio',
 
 // to find all users that have activity matches with the current user
 app.get('/mymatches/:userid',
-  uaCtrl.findByAct,
-  (req, res) => { res.end(); }
-);
+  uaCtrl.findByAct);
 
 app.use(express.static(path.join(__dirname, '/client/')));
 
