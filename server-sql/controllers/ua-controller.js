@@ -27,14 +27,20 @@ function add(req, res, next) { // associates a user and a activity
 }
 
 function findByAct(req, res, next) { // finds all users by activity
-  Activity.sequelize.query('SELECT "activityId" FROM "useractivities" WHERE "userId" =\'' + req.params.userId + '\'')
-  .then((queryData) => {
-    UserActivity.sequelize.query('SELECT DISTINCT useractivities."userId" FROM useractivities WHERE useractivities."activityId" IN (5,6,8)')
 
+  Activity.sequelize.query('SELECT "activityId" FROM "useractivities" WHERE "userId" =' + req.params.userid)
+  .then((queryData) => {
+    let queryString = []
+    for (let i = 0; i < queryData[0].length; i++) {
+      queryString.push(queryData[0][i].activityId)
+    }
+    queryString = queryString.join(",")
+    UserActivity.sequelize.query('SELECT DISTINCT useractivities."userId" FROM useractivities WHERE useractivities."activityId" IN ('+queryString+')')
   })
   .then((queryData) => {
+    console.log(queryData)
     UserActivity.sequelize.query('SELECT username FROM users WHERE _ID IN (2,3,4)')
   });
 }
 
-module.exports = { index, add, findbyact };
+module.exports = { index, add, findByAct };
