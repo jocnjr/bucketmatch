@@ -28,7 +28,8 @@
     "path": "^0.12.7",
     "pg": "^6.1.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^3.24.2"
+    "sequelize": "^3.24.2",
+    "supertest": "^2.0.0"
   },
   "devDependencies": {
     "http-server": "^0.9.0"
